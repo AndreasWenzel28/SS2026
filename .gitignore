@@ -1,0 +1,46 @@
+# Qt Creator - Benutzereinstellungen
+*.user
+*.user.*
+
+# Build-Verzeichnisse (sehr wichtig!)
+build-*/
+build/
+debug/
+release/
+*.debug
+*.release
+
+# CMake generierte Dateien
+CMakeLists.txt.user
+CMakeUserPresets.json
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+Makefile
+
+# Qt/qmake generierte Dateien
+Makefile*
+*.qmake.stash
+*.pro.user*
+.qmake.cache
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.qm
+
+# Temporäre Dateien
+*.autosave
+*.orig
+*.rej
+*.bak
+*~
+.DS_Store
