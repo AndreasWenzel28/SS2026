@@ -1,5 +1,7 @@
 #include <QtTest>
 #include <stdexcept>
+#include <QSignalSpy>
+#include <QDebug>
 
 #include "hysteresis_switch.h"
 
@@ -58,9 +60,16 @@ void TestHysteresisSwitch::startsOff()
 void TestHysteresisSwitch::switchOn()
 {
     HysteresisSwitch sw(80.0, 70.0);
+
+    QSignalSpy spy(&sw,&HysteresisSwitch::signalSwitched);
     sw.update(80.0);
 
     QCOMPARE(sw.isOn(), true);
+
+
+    //Signal testen - Wartung
+    QCOMPARE(spy.count(),1);
+    QCOMPARE(spy.at(0).at(0).toBool(),true);
 }
 
 void TestHysteresisSwitch::stayOnAt70()
@@ -75,10 +84,15 @@ void TestHysteresisSwitch::stayOnAt70()
 void TestHysteresisSwitch::switchOff()
 {
     HysteresisSwitch sw(80.0, 70.0);
+    QSignalSpy spy(&sw,&HysteresisSwitch::signalSwitched);
     sw.update(80.0);
     sw.update(69.9999);
 
     QCOMPARE(sw.isOn(), false);
+
+    QCOMPARE(spy.count(),2);
+    QCOMPARE(spy.at(0).at(0).toBool(),true);
+    QCOMPARE(spy.at(1).at(0).toBool(),false);
 }
 
 
